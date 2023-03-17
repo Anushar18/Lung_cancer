@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8">
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+
+  <title>Lung Cancer-Predictor</title>
+  <meta content="" name="description">
+  <meta content="" name="keywords">
+
+  <!-- Favicons -->
+  <link href="{{ url_for('static', filename='img/favicon.png') }}" rel="icon">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i|Raleway:300,300i,400,400i,500,500i,600,600i,700,700i|Poppins:300,300i,400,400i,500,500i,600,600i,700,700i" rel="stylesheet">
+
+  <!-- Vendor CSS Files -->
+  
+  <link href="{{ url_for('static', filename='vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/animate.css/animate.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap/css/bootstrap.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/bootstrap-icons/bootstrap-icons.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/boxicons/css/boxicons.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/glightbox/css/glightbox.min.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/remixicon/remixicon.css') }}" rel="stylesheet">
+  <link href="{{ url_for('static', filename='vendor/swiper/swiper-bundle.min.css') }}" rel="stylesheet">
+
+  <!-- Template Main CSS File -->
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}"> 
+
+  <!-- =======================================================
+  * Template Name: Medilab - v4.7.1
+  * Template URL: https://bootstrapmade.com/medilab-free-medical-bootstrap-theme/
+  * Author: BootstrapMade.com
+  * License: https://bootstrapmade.com/license/
+  ======================================================== -->
+</head>
+
+<body>
+
+  <!-- ======= Top Bar ======= -->
+  <div id="topbar" class="d-flex align-items-center fixed-top">
+    <div class="container d-flex justify-content-between">
+      
+      
+    </div>
+  </div>
+
+  <!-- ======= Header ======= -->
+  <header id="header" class="fixed-top">
+    <div class="container d-flex align-items-center">
+
+      <h1 class="logo me-auto"><a href="index.html">Lung Cancer-Predictor</a></h1>
+      
+      <!-- Uncomment below if you prefer to use an image logo -->
+      <!-- <a href="index.html" class="logo me-auto"><img src="img/logo.png" alt="" class="img-fluid"></a>-->
+
+      
+      <a href="{{ url_for('logout') }}" class="appointment-btn scrollto"><span class="d-none d-md-inline">Logout</span></a>
+
+
+    </div>
+    <div class="container d-flex align-items-center">
+      &nbsp;  &nbsp;
+      <!--p style="font-size:14px ; ">Happy cycles :)</p-->
+    </div>
+  </header><!-- End Header -->
+
+
+
+  <section id="appointment" class="appointment section-bg">
+    <div class="container">
+      
+     <br><br><br><br><br><br>
+     <div class="section-title">
+       <div style="color:rgb(79, 47, 70);">
+        {% for message in get_flashed_messages()%}
+        {% if "successfully" in message %}
+        <p style="color:rgb(0, 68, 100);">{{ message }}</p>
+        {% else %}
+        <p style="color:rgb(68, 104, 74);">{{ message }}</p>
+        {% endif %}
+        {% endfor %}
+      </div>
+      
+      <br><br>
+      <h2>Upload Ultra Sound Image</h2>
+      <p>One step away from detecting Lung Cancer.</p>
+    </div>
+
+    <form enctype="multipart/form-data" action="/uploadimg" method="post" role="form" class="php-email-form">
+      <div class="row">
+        
+        <div class="col-md-4 form-group mt-3 mt-md-0">
+          
+        </div>
+        <div class="row">
+          
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            
+          </div>
+          <div class="col-md-4 form-group mt-3 mt-md-0">
+            
+
+            <input class="form-control" id="file" name="file" type="file">
+            
+            
+          </div>
+        </div>
+
+        
+        <br>
+        <br>
+
+        <br>
+        <br>
+        <div class="text-center"><button type="submit">Generate Report</button></div>
+        <br>
+        <br>
+        <br>
+        <br>
+        <div class="section-title">
+          {% if "not" in prediction_text %}
+          <p style="color:darkgreen; font-size: 30px;">{{ prediction_text }}</p>
+          {% else %}
+          <p style="color:darkred; font-size: 30px;">{{ prediction_text }}</p>
+          {% endif %}
+          
+        </div>
+        <br>
+        <br>
+        <div class="section-title">
+          <p style="color:palevioletred; font-size: 20px;">Disclaimer: All the results are predective. Please consult a doctor before taking any action.</p>
+        </div>
+      </form>
+
+    </div>
+  </section><!-- End Upload Section -->
+  <br>
+  <br>
+ 
+        
+        <br>
+        <br>
+        
+
+        <div id="preloader"></div>
+        <a href="#" class="back-to-top d-flex align-items-center justify-content-center"><i class="bi bi-arrow-up-short"></i></a>
+
+        <!-- Vendor JS Files -->
+        <script src="{{url_for('static', filename='vendor/purecounter/purecounter.js')}}" ></script>
+        <script src="{{url_for('static', filename='vendor/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+        <script src="{{url_for('static', filename='vendor/glightbox/js/glightbox.min.js')}}" ></script>
+        <script src="{{url_for('static', filename='vendor/swiper/swiper-bundle.min.js')}}" ></script>
+        <script src="{{url_for('static', filename='js/validate.js')}}" ></script>
+        
+
+        <!-- Template Main JS File -->
+        <script src="{{url_for('static', filename='js/main.js')}}" ></script>
+
+      </body>
+
+      </html>
